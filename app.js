@@ -116,9 +116,9 @@ app.get("/download/:id", async (req, res) => {
 
         fs.unlink(file.path, (unlinkErr) => {
           if (unlinkErr) {
-            console.error("Greška prilikom brisanja fajla:", unlinkErr);
+            console.error("Error while deleting the file:", unlinkErr);
           } else {
-            console.log("Fajl uspešno obrisan nakon preuzimanja.");
+            console.log("File successfully deleted after download.");
           }
         });
       }
@@ -135,7 +135,7 @@ app.post("/send", express.json(), async (req, res) => {
     await sendEmailNode_M(receiverEmail, fileID, senderName);
     res.status(200).json({ msg: "Email sent successfully" });
   } catch (error) {
-    console.error("Greška prilikom slanja e-maila:", error);
+    console.error("Error while sending the email:", error);
     res.status(500).json({ error: error.message });
   }
 });
